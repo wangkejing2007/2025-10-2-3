@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>詩歌意象解讀模擬題</title>
+    <!-- 載入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 設定 Tailwind 配置，使用 Inter 字體 -->
+    <script>
+        tailwind.config = {
+            // 保持淺色模式
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#4f46e5', // Indigo
+                        'secondary': '#10b981', // Emerald
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 確保元素平滑過渡 */
+        .transition-all {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+        /* 頁面背景和字體顏色固定為淺色模式下的高對比度組合 */
+        body {
+            @apply bg-gray-50 text-gray-800 font-sans;
+        }
+
+        /* ---------------------------------------------------- */
+        /* 核心修正：使用 Pure CSS 實現選中狀態 (模擬圈選效果) */
+        /* 透過 :checked + .option-card 確保點擊立即觸發樣式 */
+        input[type="radio"]:checked + .option-card {
+            border: 3px solid #4f46e5; /* Primary color border */
+            background-color: #eef2ff; /* Lighter primary background (Indigo-50) */
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.1), 0 4px 6px -2px rgba(79, 70, 229, 0.05); /* Subtle primary shadow */
+        }
+        /* 確保未選中的選項卡片有邊框，以便視覺上能區分選中/未選中 */
+        .option-card {
+             @apply border border-gray-200;
+        }
+        /* ---------------------------------------------------- */
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div id="quiz-container" class="max-w-4xl mx-auto shadow-2xl rounded-2xl overflow-hidden bg-white transition-all">
+
+        <!-- 標題區域 -->
+        <header class="bg-primary p-6 md:p-8 text-white">
+            <h1 class="text-3xl font-bold tracking-tight mb-1">模擬題（詩歌意象解讀）</h1>
+            <p class="text-indigo-200">透過意象分析，理解詩歌所投射的情感與含義。</p>
+        </header>
+
+        <main class="p-6 md:p-8">
+            <!-- 詩文區域 -->
+            <section class="mb-8 border-l-4 border-secondary pl-4 bg-gray-50 p-4 rounded-lg shadow-inner">
+                <h2 class="text-xl font-semibold mb-3 text-secondary">請閱讀下列詩文：</h2>
+                <div class="text-lg leading-relaxed whitespace-pre-line text-gray-800">
+我曾夢見一條長河，
+
+它靜靜地流淌，
+
+像母親的手，
+
+輕輕撫平我心中的皺紋。
+夜空的星辰，
+
+在水面閃爍，
+
+彷彿無數盞燈火，
+
+照亮我歸鄉的路。
+                </div>
+            </section>
+
+            <!-- 問題與選項區域 -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold mb-4">問題：</h2>
+                <p class="text-xl font-medium mb-6 text-primary">
+                    這首詩中「長河」與「星辰」的意象最可能象徵什麼？
+                </p>
+
+                <div role="radiogroup" id="options-group" class="space-y-4">
+                    
+                    <!-- 選項 A -->
+                    <label for="option-a" class="block cursor-pointer">
+                        <input type="radio" id="option-a" name="poetry-answer" value="A" class="hidden" onchange="handleOptionChange()">
+                        <div class="option-card bg-gray-100 p-4 rounded-xl hover:border-primary/50 transition-all">
+                            <span class="font-bold text-lg mr-3">(A)</span>
+                            長河象徵無窮無盡的煩惱；星辰代表人世間的誘惑與困境
+                        </div>
+                    </label>
+
+                    <!-- 選項 B -->
+                    <label for="option-b" class="block cursor-pointer">
+                        <input type="radio" id="option-b" name="poetry-answer" value="B" class="hidden" onchange="handleOptionChange()">
+                        <div class="option-card bg-gray-100 p-4 rounded-xl hover:border-primary/50 transition-all">
+                            <span class="font-bold text-lg mr-3">(B)</span>
+                            長河象徵母親的關懷；星辰代表希望與指引的方向
+                        </div>
+                    </label>
+                    
+                    <!-- 選項 C -->
+                    <label for="option-c" class="block cursor-pointer">
+                        <input type="radio" id="option-c" name="poetry-answer" value="C" class="hidden" onchange="handleOptionChange()">
+                        <div class="option-card bg-gray-100 p-4 rounded-xl hover:border-primary/50 transition-all">
+                            <span class="font-bold text-lg mr-3">(C)</span>
+                            長河象徵時光流逝的無情；星辰代表虛幻的夢境
+                        </div>
+                    </label>
+                    
+                    <!-- 選項 D -->
+                    <label for="option-d" class="block cursor-pointer">
+                        <input type="radio" id="option-d" name="poetry-answer" value="D" class="hidden" onchange="handleOptionChange()">
+                        <div class="option-card bg-gray-100 p-4 rounded-xl hover:border-primary/50 transition-all">
+                            <span class="font-bold text-lg mr-3">(D)</span>
+                            長河象徵生命的孤獨；星辰代表短暫的快樂與歡愉
+                        </div>
+                    </label>
+                </div>
+            </section>
+
+            <!-- 知識點與難易度 -->
+            <div class="flex flex-wrap gap-4 mb-8 text-sm">
+                <div class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full font-medium">
+                    📌 知識點：詩歌意象理解
+                </div>
+                <div class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full font-medium">
+                    📊 難易度評分：3/5（中等）
+                </div>
+            </div>
+
+            <!-- 答案顯示/隱藏按鈕 -->
+            <button id="toggle-button" onclick="toggleAnswer()"
+                class="w-full sm:w-auto px-6 py-3 text-lg font-semibold rounded-lg bg-secondary text-white hover:bg-emerald-600 focus:outline-none focus:ring-4 focus:ring-emerald-300 transition-colors shadow-lg">
+                查看正確答案與解析
+            </button>
+
+            <!-- 答案與解析區域 (預設隱藏) -->
+            <section id="answer-section" class="mt-8 pt-6 border-t border-gray-200 transition-all hidden">
+                <h2 class="text-2xl font-bold text-secondary mb-4">✅ 正確答案與詳細解析</h2>
+
+                <!-- 正確答案 -->
+                <div class="bg-emerald-50 border border-emerald-300 p-4 rounded-xl mb-6 shadow-md">
+                    <p class="text-xl font-bold text-emerald-800">
+                        👉 (B) 長河象徵母親的關懷；星辰代表希望與指引的方向
+                    </p>
+                </div>
+
+                <!-- 解析 -->
+                <h3 class="text-xl font-semibold mb-3 border-b border-gray-200 pb-1">解析</h3>
+                <div class="space-y-4 text-gray-800">
+                    <p>
+                        <span class="font-bold text-primary">長河：</span>詩中明確指出「靜靜地流淌，<span class="underline">像母親的手</span>，輕輕撫平我心中的皺紋」。這裡直接將長河比作「母親的手」，意象帶有安撫、溫柔、治癒的意涵，因此最可能象徵<span class="font-bold">母親的關懷</span>。
+                    </p>
+                    <p>
+                        <span class="font-bold text-primary">星辰：</span>詩中描述「在水面閃爍，彷彿無數盞燈火，<span class="underline">照亮我歸鄉的路</span>」。星辰的意象在此具有光明、引導方向的功能，暗示著在迷惘中給予的<span class="font-bold">希望與指引</span>。
+                    </p>
+                    <div class="p-3 bg-red-50 border-l-4 border-red-500 rounded-md">
+                        <p class="font-semibold text-red-800">❌ 排除其他選項：</p>
+                        <ul class="list-disc list-inside ml-2 mt-2 text-sm">
+                            <li>(A) 認為意象是負面煩惱與困境，與詩中「撫平皺紋」的溫柔基調不符。</li>
+                            <li>(C) 認為長河是無情、星辰是虛幻，過度悲觀，與詩句表達的撫慰感相矛盾。</li>
+                            <li>(D) 認為星辰是短暫快樂，與「照亮歸鄉的路」所蘊含的永恆、目標性意涵不符。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 底部版權/學習提醒 -->
+    <footer class="mt-10 max-w-4xl mx-auto text-center text-gray-600 text-sm">
+        <p>
+            ✅ 學習提醒：現代詩解讀時，務必緊扣詩中明確的比喻線索（如「像…」），以詩人的提示為依據。
+        </p>
+        <p class="mt-2">此為模擬試題，旨在訓練意象解讀能力。</p>
+    </footer>
+
+    <!-- JavaScript 邏輯 -->
+    <script>
+        /**
+         * 函式：切換答案與解析區域的顯示狀態
+         */
+        function toggleAnswer() {
+            const answerDiv = document.getElementById('answer-section');
+            const button = document.getElementById('toggle-button');
+            
+            if (answerDiv.classList.contains('hidden')) {
+                answerDiv.classList.remove('hidden');
+                button.textContent = '隱藏解析';
+                // 平滑滾動到答案區
+                answerDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                answerDiv.classList.add('hidden');
+                button.textContent = '查看正確答案與解析';
+            }
+        }
+
+        /**
+         * 函式：處理選項改變事件
+         * 功能僅限於：當使用者選擇新答案時，若解析區已打開，則自動關閉。
+         */
+        function handleOptionChange() {
+            // 選項被選中後，自動隱藏答案解析
+            const answerDiv = document.getElementById('answer-section');
+            const button = document.getElementById('toggle-button');
+
+            if (!answerDiv.classList.contains('hidden')) {
+                answerDiv.classList.add('hidden');
+                button.textContent = '查看正確答案與解析';
+            }
+        }
+    </script>
+
+</body>
+</html>
